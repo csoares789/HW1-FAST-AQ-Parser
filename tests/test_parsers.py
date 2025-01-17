@@ -1,5 +1,9 @@
 # write tests for parsers
 
+#import sys
+#import os
+#sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from seqparser import (
         FastaParser,
         FastqParser)
@@ -33,6 +37,8 @@ def test_FastaParser():
     files that are blank or corrupted in some way. Two example Fasta files are
     provided in /tests/bad.fa and /tests/empty.fa
     """
+
+
     pass
 
 
