@@ -1,14 +1,22 @@
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from seqparser import (
         FastaParser,
         FastqParser)
 
-fasta_parser = FastaParser("./HW1-FAST-AQ-Parser/data/test.fa")
+"""
+fastq_parser = FastqParser("./data/test.fa")
 
-# Iterate over the parsed records
-for header, sequence in fasta_parser:
-    print(f"Header: {header}")
-    print(f"Sequence: {sequence}")
+seqs = []
+
+for header, seq, qual in fastq_parser:
+    seqs.append([header, seq, qual])
+
+assert seqs[0][0] == None
+"""
+
+fasta_parser = FastaParser("./tests/bad.fa")
+seqs = []
+for header, seq in fasta_parser:
+        seqs.append([header, seq])
+print(seqs[0][0])
+assert seqs[0][0] == None

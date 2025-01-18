@@ -5,3 +5,5 @@ seqparser/__pycache__/parse.cpython-312.pyc
 seqparser/__pycache__/parse.cpython-313.pyc
 seqparser/__pycache__/seq.cpython-312.pyc
 seqparser/__pycache__/seq.cpython-313.pyc
+tests/__pycache__/test_parsers.cpython-313-pytest-8.3.4.pyc
+tests/__pycache__/test_transcribe.cpython-313-pytest-8.3.4.pyc
