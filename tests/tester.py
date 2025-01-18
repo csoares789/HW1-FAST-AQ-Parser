@@ -2,6 +2,7 @@
 from seqparser import (
         FastaParser,
         FastqParser)
+from seqparser import transcribe, reverse_transcribe
 
 import pytest
 
@@ -23,8 +24,19 @@ with pytest.raises(ValueError):
                 seqs.append([header, seq])
 
 """
+"""
 fasta_parser = FastaParser("./tests/blank.fa")
 seqs = []
 with pytest.raises(ValueError):
       for header, seq in fasta_parser:
             seqs.append([header, seq])
+"""
+
+fasta = FastaParser("./data/test.fa")
+seqs = {}
+for header, seq in fasta:
+        seqs[header] = seq
+DNA = seqs["seq0"]
+RNA = reverse_transcribe(DNA)
+
+assert RNA == "UGCGGGGGCCGCUGAACUCACACCGUGUGGGCUCGAUUAAUAUCCACAGAGGACCCCGAAAUUCUGGCUUCCGGGCCGUGACCCUCAAAAGAUUCAAUCA"
