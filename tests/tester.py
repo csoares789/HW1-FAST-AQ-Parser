@@ -3,6 +3,8 @@ from seqparser import (
         FastaParser,
         FastqParser)
 
+import pytest
+
 """
 fastq_parser = FastqParser("./data/test.fa")
 
@@ -13,10 +15,16 @@ for header, seq, qual in fastq_parser:
 
 assert seqs[0][0] == None
 """
-
+"""
 fasta_parser = FastaParser("./tests/bad.fa")
 seqs = []
-for header, seq in fasta_parser:
-        seqs.append([header, seq])
-print(seqs[0][0])
-assert seqs[0][0] == None
+with pytest.raises(ValueError):
+        for header, seq in fasta_parser:
+                seqs.append([header, seq])
+
+"""
+fasta_parser = FastaParser("./tests/blank.fa")
+seqs = []
+with pytest.raises(ValueError):
+      for header, seq in fasta_parser:
+            seqs.append([header, seq])

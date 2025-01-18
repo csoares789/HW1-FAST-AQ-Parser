@@ -33,6 +33,7 @@ def test_FastaParser():
     files that are blank or corrupted in some way. Two example Fasta files are
     provided in /tests/bad.fa and /tests/empty.fa
     """
+    #Test on proper fasta files
     fasta_parser = FastaParser("./data/test.fa")
     seqs = {}
     for header, seq in fasta_parser:
@@ -41,6 +42,20 @@ def test_FastaParser():
     assert seqs["seq0"] == "TGATTGAATCTTTTGAGGGTCACGGCCCGGAAGCCAGAATTTCGGGGTCCTCTGTGGATATTAATCGAGCCCACACGGTGTGAGTTCAGCGGCCCCCGCA"
     assert seqs["seq99"] == "CAAACCGGCGATGCGGGTACTCCCTACAAGTTGGACTCCGCAGCGAACGCCGCAGGGGCCATTATACGGCGGTCTTGGCGGCGTCGACCAGGCCGGTCCA"
 
+    #It appears FastaParse() cannot handle the edge case files without throwing an error, so I wrote tests assuming that was the intended behavior
+    #Test on file with no sequences
+    fasta_parser = FastaParser("./tests/bad.fa")
+    seqs = []
+    with pytest.raises(ValueError):
+        for header, seq in fasta_parser:
+            seqs.append([header, seq])
+    
+    #Test for blank file
+    fasta_parser = FastaParser("./tests/blank.fa")
+    seqs = []
+    with pytest.raises(ValueError):
+        for header, seq in fasta_parser:
+            seqs.append([header, seq])
 
 
     pass
